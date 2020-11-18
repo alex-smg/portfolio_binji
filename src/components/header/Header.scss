@@ -1,0 +1,47 @@
+#header {
+    width: 100%;
+    background: #FAFAFA;
+    box-shadow: 0px 0px 6px rgba(71, 71, 71, 0.24);
+    #header_container {
+        display: flex;
+        width: 95%;
+        justify-content: space-between;
+        margin: auto;
+        padding: 20px 0px;
+
+        #header_logo {
+            display: flex;
+            div {
+                display: flex;
+                h1 {
+                    margin: auto 0px auto 34px;
+                    font-weight: 400;
+                    font-size: 16px;
+                    letter-spacing: .180rem;
+                    text-transform: uppercase;
+                }
+            }
+            
+        }
+        #header_menu {
+            display: flex;
+            ul {
+                display: flex;
+                margin: auto;
+                justify-content: space-between;
+                li {
+                    list-style: none;
+                    display: flex;
+                    margin: auto;
+                    margin-right: 24px;
+                    a {
+                        margin: auto;
+                        text-decoration: none;
+                        text-transform: uppercase;
+                        font-weight: 400;
+                    }
+                }
+            }
+        }
+    }
+}

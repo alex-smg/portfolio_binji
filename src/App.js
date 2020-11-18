@@ -11,24 +11,28 @@ import About from './pages/about/About.js';
 import Contact from './pages/contact/Contact.js';
 import Projects from './pages/projects/Projects.js';
 import Home from './pages/home/Home.js';
+import Header from './components/header/Header.js';
 
 export default function App() {
   return (
-    <Router>
-        <Switch>
-          <Route path="/about">
-            <About />
-          </Route>
-          <Route path="/contact">
-            <Contact />
-          </Route>
-          <Route path="/home">
-            <Home />
-          </Route>
-          <Route path="/projects">
-            <Projects />
-          </Route>
-        </Switch>
-    </Router>
+    <div>
+      <Header />
+      <Router>
+          <Switch>
+            <Route path="/about">
+              <About />
+            </Route>
+            <Route path="/contact">
+              <Contact />
+            </Route>
+            <Route path="/">
+              <Home />
+            </Route>
+            <Route path="/projects">
+              <Projects />
+            </Route>
+          </Switch>
+      </Router>
+    </div>
   );
 }
