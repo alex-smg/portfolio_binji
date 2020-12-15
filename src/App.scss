@@ -3,17 +3,107 @@
   padding: 0;
   box-sizing: border-box;
   font-family: 'Montserrat', sans-serif;
+  list-style: none;
+  text-decoration: none;
   color: #484848;
 }
-
+html, body {
+  width: 100vw;
+}
 .title {
   font-size: 30px;
   line-height: 38px;
-  font-weight: 300;
+  font-weight: 600;
 }
 
 .basic_text {
   font-size: 20px;
   line-height: 30px;
   font-weight: 100;
+}
+
+.bloc_text_mobile {
+  font-size: 16px;
+  font-weight: 300;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.19;
+  letter-spacing: normal;
+  font-family: 'Merriweather Sans', sans-serif;
+  text-align: left;
+  color: #484848;
+}
+
+.bloc_text_title {
+  font-size: 16px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.19;
+  letter-spacing: normal;
+  text-align: left;
+  color: #484848;
+}
+
+.light_uppercase {
+  font-size: 16px;
+  font-weight: 300;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.19;
+  letter-spacing: normal;
+  color: #484848;
+  text-transform: uppercase;
+}
+
+.semiBold_title {
+  font-size: 20px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.2;
+  letter-spacing: normal;
+}
+
+.thin {
+  font-size: 16px;
+  font-weight: 100;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.19;
+  letter-spacing: normal;
+}
+
+.btn_primary {
+  padding: 12px 24px;
+  border-radius: 24px;
+  text-transform: uppercase;
+  text-align: center;
+  width: max-content;
+  cursor: pointer;
+}
+.dark_button {
+  background: #0f4c81;
+  color: #FFFFFF;
+}
+
+.light_button {
+  background: transparent;
+  color: #0f4c81;
+  border: solid 1px #0f4c81;
+}
+
+.my-node-enter {
+  opacity: 0;
+}
+.my-node-enter-active {
+  opacity: 1;
+  transition: opacity 200ms;
+}
+.my-node-exit {
+  opacity: 1;
+}
+.my-node-exit-active {
+  opacity: 0;
+  transition: opacity 200ms;
 }

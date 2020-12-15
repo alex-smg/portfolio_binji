@@ -13,15 +13,18 @@
             display: flex;
             div {
                 display: flex;
-                h1 {
-                    margin: auto 0px auto 34px;
-                    font-weight: 400;
-                    font-size: 16px;
-                    letter-spacing: .180rem;
-                    text-transform: uppercase;
+                a {
+                    margin: auto;
+                    text-decoration: none;
+                    h1 {
+                        margin: auto 0px auto 34px;
+                        font-weight: 400;
+                        font-size: 16px;
+                        letter-spacing: .180rem;
+                        text-transform: uppercase;
+                    }
                 }
             }
-            
         }
         #header_menu {
             display: flex;
@@ -39,8 +42,33 @@
                         text-decoration: none;
                         text-transform: uppercase;
                         font-weight: 400;
+                        cursor: pointer;
+                    }
+                    .select_link {
+                        font-weight: 600;
+                        color: #0F4C81;
                     }
                 }
+            }
+        }
+    }
+}
+@media screen and (max-width: 768px) {
+    #header {
+        #header_container {
+            padding: 22px 0px;
+            #header_logo {
+                margin: auto
+            }
+            #header_menu {
+                margin: auto;
+                position: fixed;
+                bottom: 0px;
+                left: 0;
+                background: #FAFAFA;
+                padding: 15px 0px;
+                width: 100%;
+                box-shadow: 0px 0px 6px rgba(71, 71, 71, 0.24);
             }
         }
     }
