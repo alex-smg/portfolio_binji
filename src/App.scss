@@ -81,6 +81,7 @@ html, body {
   text-align: center;
   width: max-content;
   cursor: pointer;
+  border: none;
 }
 .dark_button {
   background: #0f4c81;
@@ -106,4 +107,10 @@ html, body {
 .my-node-exit-active {
   opacity: 0;
   transition: opacity 200ms;
+}
+
+.error {
+  color: #E65C47;
+  font-size: 12px;
+  margin: 12px 12px 0px 12px;
 }

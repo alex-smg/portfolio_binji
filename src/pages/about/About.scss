@@ -1,58 +1,71 @@
 #About {
     width: 100%;
-    #AboutMobile {
-        display: none;
-    }
+    margin-top: 24px;
     #AboutDesktop {
-        width: 78%;
-        margin: auto;
-        padding: 98px 0px;
+        display: none
+    }
+    #AboutMobile {
+        display: block;
+        text-align: center;
+        width: 100%;
         section {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 60px;
             width: 100%;
-            div {
-                margin: auto 0px;
+            margin-bottom: 36px;
+            img:first-child {
+                margin-bottom: 12px;
+            }
+            .container_text {
+                width: 90%;
+                margin: auto;
                 h2 {
                     margin-bottom: 12px;
                 }
             }
+            .container_img {
+                width: 100%;
+                img {
+                    width: 100%;
+                }
+            }
         }
     }
-    
 }
 
-@media screen and (max-width: 768px) {
+
+
+@media screen and (min-width: 768px) {
     #About {
         width: 100%;
-        #AboutDesktop {
-            display: none
-        }
+        margin-top: 0px;
         #AboutMobile {
+            display: none;
+        }
+        #AboutDesktop {
             display: block;
-            text-align: center;
-            width: 100%;
+            width: 78%;
+            margin: auto;
+            padding: 98px 0px;
             section {
+                display: flex;
+                justify-content: space-between;
+                margin-bottom: 60px;
                 width: 100%;
-                margin-bottom: 36px;
-                img:first-child {
-                    margin-bottom: 12px;
-                }
-                .container_text {
-                    width: 90%;
-                    margin: auto;
+                div {
+                    margin: auto 0px;
                     h2 {
                         margin-bottom: 12px;
                     }
                 }
-                .container_img {
-                    width: 100%;
-                    img {
-                        width: 100%;
-                    }
-                }
             }
+        }
+        
+    }
+}
+
+@media screen and (min-width: 1536px) {
+    #About {
+        #AboutDesktop {
+            width: 60%;
         }
     }
 }

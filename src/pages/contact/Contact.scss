@@ -22,6 +22,7 @@
 
 @media screen and (min-width: 768px) { 
     #contact {
+        min-height: 75vh;
         background: rgba(15, 75, 128, 0.1);
         #contact_title {
             display: none;

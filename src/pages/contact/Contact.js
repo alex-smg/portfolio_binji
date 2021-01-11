@@ -1,62 +1,99 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Contact.scss';
 import InputText from '../../components/inputText/InputText';
 import InputTextarea from '../../components/inputTextarea/InputTextarea';
+import emailjs from 'emailjs-com';
+
 
 const Contact = () => {
-  const nodemailer = require("nodemailer");
-
-  // async..await is not allowed in global scope, must use a wrapper
-  async function main() {
-    // Generate test SMTP service account from ethereal.email
-    // Only needed if you don't have a real mail account for testing
-    let testAccount = await nodemailer.createTestAccount();
-
-    // create reusable transporter object using the default SMTP transport
-    let transporter = nodemailer.createTransport({
-      host: "smtp.ethereal.email",
-      port: 587,
-      secure: false, // true for 465, false for other ports
-      auth: {
-        user: testAccount.user, // generated ethereal user
-        pass: testAccount.pass, // generated ethereal password
-      },
-    });
-
-    // send mail with defined transport object
-    let info = await transporter.sendMail({
-      from: 'b.humer.portfolio@gmail.com', // sender address
-      to: "b.humer.portfolio@gmail.com", // list of receivers
-      subject: "Hello ✔", // Subject line
-      text: "Hello world?", // plain text body
-      html: "<b>Hello world?</b>", // html body
-    });
-
-    console.log("Message sent: %s", info.messageId);
-    // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
-
-    // Preview only available when sending through an Ethereal account
-    console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
-    // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
-  }
   
-    return (
-      <div id="contact">
-          <div id="contact_title">
-            <h2>Contact</h2>
-          </div>
+  emailjs.init("user_PPiLZm7I7XzgFp7VDRKWM");
+
+  const [messageState, setMessageState] = useState(
+    {
+      name: '',
+      email: '',
+      message: '',
+    }
+  )
+  const [errorState, setErrorState] = useState(
+    {
+      errorName: '',
+      errorEmail: '',
+      errorMessage: '',
+    }
+  )
+
+  const changeValue = (emp, value) => {
+    setMessageState(prevState => {
+      return { ...prevState, [emp] : value }
+    });
+  }
+
+  var templateParams = {
+    from_name: messageState.name,
+    email: messageState.email,
+    message: messageState.message,
+};
+
+const checkForm = () => {
+  if (messageState.name === '' || messageState.email === '' || messageState.message === '') {
+    if (messageState.name === '') {
+      setErrorState(prevState => {
+        return { ...prevState, errorName: 'Please fill in this field' }
+      });
+      console.log(errorState);
+    }
+    if (messageState.email === '') {
+      console.log('2');
+      setErrorState(prevState => {
+        return { ...prevState, errorEmail: 'Please fill in this field' }
+      });
+    }
+    if (messageState.message === '') {
+      console.log('3');
+      setErrorState(prevState => {
+        return { ...prevState, errorMessage: 'Please fill in this field' }
+      });
+    }
+    return false;
+  } else {
+    return true;
+  }
+}
+
+ const sendMail = (e) => {
+    e.preventDefault();
+    console.log(checkForm());
+    if (checkForm()) {
+      emailjs.send('service_onz34mv', 'template_70l0c4m', templateParams)
+        .then(function(response) {
+          console.log('SUCCESS!', response.status, response.text);
+        }, function(error) {
+          console.log('FAILED...', error);
+      });
+    }
+ }
+
+  return (
+    <div id="contact">
+        <div id="contact_title">
+          <h2>Contact</h2>
+        </div>
+        <form onSubmit={(e) => sendMail(e)}>
           <div id="contact_container">
             <div id="contact_inputs">
-              <InputText name="name" label="Your Name"></InputText>
-              <InputText name="email" label="Your email (required)"></InputText>
-              <InputTextarea name="message" label="Message (required)" placeholder="Message..."></InputTextarea>
+              <InputText type="text" name="name" changeValue={changeValue} error={errorState.errorName} label="Your Name"></InputText>
+              <InputText type="email" name="email" changeValue={changeValue} error={errorState.errorEmail} label="Your email (required)"></InputText>
+              <InputTextarea name="message" label="Message (required)" changeValue={changeValue} error={errorState.errorMessage} placeholder="Message..."></InputTextarea>
             </div>
             <div id="contact_button">
-              <button className="btn_primary dark_button" onClick={() => main()}>send email</button>
+              <button className="btn_primary dark_button" type='submit' >send email</button>
             </div>
           </div>
-      </div>
-    );
+        </form>
+    </div>
+  );
 }
   
 export default Contact;

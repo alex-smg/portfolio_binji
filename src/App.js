@@ -1,14 +1,17 @@
-import React, { useState } from "react";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-} from "react-router-dom";
+import React from "react";
 
 import {
   TransitionGroup,
   CSSTransition
 } from "react-transition-group";
+
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  useLocation
+} from "react-router-dom";
+
 
 import './App.scss';
 
@@ -21,6 +24,10 @@ import Footer from './components/footer/Footer.js';
 
 
 const routes = [
+  {
+    path: "/",
+    component: About,
+  },
   {
     path: "/about",
     component: About,
@@ -37,32 +44,31 @@ const routes = [
     path: `/:id`,
     component: SelectProject
   },
-  
 ];
 
 export default function App() {
+  
   return (
       <Router>
         <Header/>
-          <Switch>
-            {routes.map((route, i) => (
-              <RouteWithSubRoutes key={i} {...route} />
-            ))}
-          </Switch>
+          <AninationApp />
         <Footer />
       </Router>
   );
 }
 
+function AninationApp() {
+  let location = useLocation();
 
-function RouteWithSubRoutes(route) {
   return (
-    <Route
-      path={route.path}
-      render={props => (
-        // pass the sub-routes down to keep nesting
-        <route.component {...props} routes={route.routes} />
-      )}
-    />
-  );
+    <TransitionGroup>
+      <CSSTransition key={location.key} classNames="my-node" timeout={300}>
+        <Switch location={location}>
+          {routes.map((route, i) => (
+            <Route exact key={i} {...route} />
+          ))}
+        </Switch>
+      </CSSTransition>
+    </TransitionGroup>
+  )
 }
